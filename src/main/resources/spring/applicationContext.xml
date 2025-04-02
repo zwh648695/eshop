@@ -62,7 +62,8 @@
 		<property name="hibernateProperties">
 			<props>
 				<!-- 設定 Hibernate 方言 -->
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8InnoDBDialect</prop> -->
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
 				<!-- 是否在控制台顯示 SQL -->
 				<prop key="hibernate.show_sql">true</prop>
 				<!-- 是否格式化 SQL -->
