@@ -28,12 +28,14 @@
 			<artifactId>spring-web</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
 		<!-- Spring 上下文管理，用於依賴注入等功能 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
 		<!-- Spring ORM，與 Hibernate 整合使用 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -61,6 +63,7 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
+
 		<!-- Hibernate Ehcache，提供快取機制，提高效能 -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -74,13 +77,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>  <!-- 請確認這裡的版本為 8.x -->
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>5.1.46</version>
-		</dependency>
-		-->
+
 		<!-- C3P0 連線池，管理資料庫連線池 -->
 		<dependency>
 			<groupId>com.mchange</groupId>
@@ -95,6 +92,7 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<!-- JSP API，提供 JSP 的標準功能 -->
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -102,6 +100,7 @@
 			<version>2.3.1</version>
 			<scope>provided</scope>
 		</dependency>
+
 		<!-- JSTL（JavaServer Pages Standard Tag Library），用於簡化 JSP 標籤的使用 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -115,6 +114,30 @@
 			<artifactId>logback-classic</artifactId>
 			<version>1.2.11</version>
 		</dependency>
+
+		<!-- ✅ Spring 測試 -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- ✅ JUnit 5 -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.9.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.junit.platform</groupId>
+			<artifactId>junit-platform-launcher</artifactId>
+			<version>1.9.3</version>
+			<scope>test</scope>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>eshop</finalName>

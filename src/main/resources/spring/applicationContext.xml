@@ -55,14 +55,21 @@
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<!-- 指定資料庫連線 -->
 		<property name="dataSource" ref="dataSource" />
+
+		<!-- 配置 JPA 扫描的实体类包 -->
+		<property name="packagesToScan">
+			<value>com.example.pojo.entity</value>
+		</property>
+
+		<!-- 配置 Hibernate 映射文件的位置 -->
 		<property name="mappingLocations">
 			<value>classpath:com/example/pojo/hbm/*.hbm.xml</value>
 		</property>
+
 		<!-- Hibernate 相關屬性設定 -->
 		<property name="hibernateProperties">
 			<props>
 				<!-- 設定 Hibernate 方言 -->
-				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8InnoDBDialect</prop> -->
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
 				<!-- 是否在控制台顯示 SQL -->
 				<prop key="hibernate.show_sql">true</prop>
