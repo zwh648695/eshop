@@ -1,3 +1,3 @@
 <% 
-response.sendRedirect("home/index");
+response.sendRedirect("index.jsp");
 %>

@@ -12,6 +12,16 @@
         <param-value>classpath:spring/applicationContext.xml</param-value>
         <!-- <param-value>classpath:spring/spring-*.xml</param-value> -->
     </context-param>
+    
+    <!-- ✅ 先加你自己的登入驗證 Filter -->
+	<filter>
+	    <filter-name>loginFilter</filter-name>
+	    <filter-class>com.example.filter.LoginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>loginFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
 
 	<!-- struts2核心 -->
 	<filter>
@@ -33,7 +43,7 @@
 	</session-config>
 	
 	<welcome-file-list>
-	   <welcome-file>/home.jsp</welcome-file>
+	    <welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
 	<error-page>
