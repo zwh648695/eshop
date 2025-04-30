@@ -110,4 +110,62 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 	}
 
+	// 根據 page 查詢商品
+	@Override
+	public List<Product> findByPage(int currentPage, int pageSize) {
+		List<Product> list = null;
+		String hql = "FROM Product";
+		
+		try {
+			Session session = getSession();
+			Query<Product> query = session.createQuery(hql, Product.class);
+			query.setFirstResult((currentPage - 1) * pageSize);
+			list = query.list();
+		}
+		catch(Exception e) {
+			System.err.println("根據頁面查詢商品時發生錯誤：" + e.getMessage());
+            e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	// 取得全部商品的筆數
+	@Override
+	public int countTotalProducts() {
+		String hql = "SELECT COUNT(*) FROM Product";
+		int count = 0;
+		
+		try {
+			Session session = getSession();
+			Query<Long> query = session.createQuery(hql, Long.class);
+			count = query.uniqueResult().intValue();
+		}
+		catch(Exception e) {
+			System.err.println("查詢商品總筆數時發生錯誤：" + e.getMessage());
+            e.printStackTrace();
+		}
+		
+		return count;
+	}
+	
+	@Override
+	public Product findByName(String name) {
+	    String hql = "FROM Product WHERE name = :name";
+	    Product product = null;
+
+	    try {
+	        Session session = getSession();
+	        Query<Product> query = session.createQuery(hql, Product.class);
+	        query.setParameter("name", name);
+	        product = query.uniqueResult(); // 找到就回傳，否則為 null
+	    } 
+	    catch (Exception e) {
+	        System.err.println("根據商品名稱查詢時發生錯誤：" + e.getMessage());
+	        e.printStackTrace();
+	    }
+
+	    return product;
+	}
+
 }

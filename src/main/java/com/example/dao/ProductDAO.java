@@ -20,5 +20,14 @@ public interface ProductDAO {
 
     // 根據 ID 刪除商品
     void delete(Long id);
+    
+    // 根據頁數查詢商品
+    List<Product> findByPage(int currentPage, int pageSize);
+    
+    // 查詢全部商品的筆數
+    int countTotalProducts();
+    
+    // 🔍 根據商品名稱查詢：新增
+    Product findByName(String name);
 
 }
