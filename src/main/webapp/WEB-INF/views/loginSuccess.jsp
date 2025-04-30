@@ -9,7 +9,7 @@
 <title>登入成功</title>
 
 	<!-- ✅ HTML 備援跳轉（若 JS 失效） -->
-	<meta http-equiv="refresh" content="2; url=<c:url value='/eshop' />" />
+	<meta http-equiv="refresh" content="2; url=<c:url value='/eshop?currentPage=1' />" />
 	
 	<!-- ✅ 引入 Toastify 樣式 -->
 	<link rel="stylesheet" type="text/css" href="public/css/toastify.min.css">
@@ -34,7 +34,9 @@
 
 		// JavaScript 跳轉（與 meta 保持一致）
 		setTimeout(function () {
-			window.location.href = "<c:url value='/eshop' />";
+			<!-- window.location.href = "<c:url value='/eshop' />"; -->
+			
+			window.location.href = "<c:url value='/eshop?currentPage=1' />";
 		}, 2000);
 	</script>
 

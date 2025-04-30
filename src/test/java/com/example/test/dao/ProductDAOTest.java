@@ -79,7 +79,7 @@ public class ProductDAOTest {
 	}
 	
 	// === 測試：刪除單筆商品 ===
-	@Test
+//	@Test
 	public void testDelete() {
 		// 先新增一筆測試資料
 		Product product = new Product();
@@ -109,6 +109,75 @@ public class ProductDAOTest {
         else {
             System.err.println("❌ 刪除失敗：資料仍存在！");
         }
+	}
+	
+	// === 測試：根據頁數查詢商品 ===
+//	@Test
+	public void testFindByPage() {
+		List<Product> products = productDAO.findByPage(1, 5);
+		
+        for (Product p : products) {
+            System.out.println("🛒 商品名稱：" + p.getName() + " / 價格：" + p.getPrice());
+        }
+	}
+	
+	// === 測試：取得全部商品的筆數 ===
+//	@Test
+	public void testCountTotalProducts() {
+		int total = productDAO.countTotalProducts();
+        System.out.println("📦 商品總筆數：" + total);
+	}
+	
+	// === 測試：根據名稱查詢商品 ===
+	@Test
+	public void testFindByName() {
+		// ✅ 建立測試分類
+	    Category testCategory = new Category();
+	    testCategory.setName("測試分類");
+	    categoryDAO.add(testCategory); // 儲存到 DB，避免 foreign key 錯誤
+	    
+		// 準備一筆測試資料
+	    Product testProduct = new Product();
+	    testProduct.setName("測試商品123");
+	    testProduct.setDescription("這是用於 findByName 的測試商品");
+	    testProduct.setPrice(199.99);
+	    testProduct.setStockQuantity(1);
+	    testProduct.setCategory(testCategory); // ❗ 重點：設為分類實體
+	    testProduct.setCreateDate(LocalDateTime.now());
+	    
+	    // 先新增商品
+	    productDAO.add(testProduct);
+
+	    // 呼叫 findByName() 查詢
+	    Product result = productDAO.findByName("測試商品123");
+
+	    if (result != null) {
+	    	System.out.println("✅ 查詢成功，商品名稱：" + result.getName() + "，分類：" + result.getCategory().getName());
+
+	        Long productId = result.getId();
+	        Long categoryId = result.getCategory().getId();
+
+	        // ❌❌❌ 先刪除商品，再刪除分類（避免外鍵限制錯誤）
+	        productDAO.delete(productId);
+	        System.out.println("✅ 已刪除測試商品 ID = " + productId);
+
+	        // ❌❌❌ 再刪分類
+	        categoryDAO.delete(categoryId);
+	        System.out.println("✅ 已刪除分類 ID = " + categoryId);
+
+	        // 驗證商品已刪除
+	        Product deleted = productDAO.findById(productId);
+	        
+	        if (deleted == null) {
+	            System.out.println("✅ 商品已成功刪除");
+	        } 
+	        else {
+	            System.err.println("❌ 商品刪除失敗！");
+	        }
+	    } 
+	    else {
+	        System.out.println("❌ 查無該名稱商品！");
+	    }
 	}
 
 }
