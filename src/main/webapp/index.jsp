@@ -34,7 +34,7 @@
     	style="margin-right: 30px;"
     	onclick="showToastAndRedirect('即將進入註冊頁面', 'register', 1500);">
     	📝 前往註冊頁面
-    </button>
+    </button>               
     
     <!-- 登入按鈕，跳轉到 login.action -->
 	<button 

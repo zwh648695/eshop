@@ -27,6 +27,27 @@
             <result name="success">/WEB-INF/views/registerSuccess.jsp</result> <!-- ✅ 中介頁 -->
             <result name="input">/WEB-INF/views/customerRegister.jsp</result> <!-- 驗證失敗 留在註冊頁 -->
         </action>
+        
+        <action name="addToCart" class="com.example.action.AddToCartAction">
+		    <!-- ✅ 加入成功後重新導向商品頁（避免表單重送） -->
+		    <result name="success" type="redirectAction">eshop</result>
+		</action>
+		
+		<action name="checkout" class="com.example.action.CheckoutAction">
+		    <!-- ✅ 顯示確認購物車頁面 -->
+		    <result name="success">/WEB-INF/views/checkout.jsp</result>
+		</action>
+		
+		<action name="updateCart" class="com.example.action.CartUpdateAction">
+			<!-- ✅ 購物車頁面可以增加、減少和刪除商品 -->
+		    <result name="success" type="redirectAction">checkout</result>
+		</action>
+		
+		<action name="confirmOrder" class="com.example.action.ConfirmOrderAction">
+		    <result name="success">/WEB-INF/views/orderSuccess.jsp</result>
+		    <result name="login" type="redirect">/public/needLogin.jsp</result> <!-- ✅ 注意這裡是 redirect -->
+		    <result name="error">/WEB-INF/views/error.jsp</result> <!-- ⛑️ 可選錯誤頁備援 -->
+		</action>
 
     </package>
 </struts>
