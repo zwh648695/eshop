@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +41,7 @@
 
 					<tr>
 						<td>${product.name}</td>
-						<td>NT$ ${unitPrice}</td>
+						<td>NT$ <fmt:formatNumber value="${unitPrice}" pattern="#,##0.00" /></td>
 						<td>
 							<form action="updateCart" method="post" class="d-inline">
 								<input type="hidden" name="productId" value="${product.id}" /> <input
@@ -56,12 +57,12 @@
 									class="btn btn-outline-secondary btn-sm" />
 							</form>
 						</td>
-						<td>NT$ ${subtotal}</td>
+						<td>NT$ <fmt:formatNumber value="${subtotal}" pattern="#,##0.00" /></td>
 						<td>
 							<form action="updateCart" method="post" class="d-inline">
 								<input type="hidden" name="productId" value="${product.id}" /> <input
 									type="hidden" name="actionType" value="remove" /> <input
-									type="submit" value="🗑" class="btn btn-outline-danger btn-sm" />
+									type="submit" value="🗑(移除)" class="btn btn-outline-danger btn-sm" />
 							</form>
 						</td>
 					</tr>
@@ -69,7 +70,9 @@
 
 				<tr>
 					<td colspan="3" class="text-end fw-bold">總金額：</td>
-					<td class="fw-bold text-danger">NT$ ${grandTotal}</td>
+					<td class="fw-bold text-danger">
+					    NT$ <fmt:formatNumber value="${grandTotal}" pattern="#,##0.00" />
+					</td>
 					<td></td>
 				</tr>
 			</tbody>
